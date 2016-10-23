@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mathcalator</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+
+    <!-- see http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+    </style>
+
+    <script src="cordova.js"></script>
+              <!-- phantom library, needed for Cordova api calls, added during build -->
+    <script src="js/app.js"></script>           <!-- recommended location of your JavaScript code relative to other JS files -->
+    <script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see README for details -->
+    <script type="text/javascript" async
+  src="js/MathJax24/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="functions.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- appjs -->
+    <link rel="stylesheet" href="appjs/app.min.css">
+
+    <link rel="stylesheet" href="sweetalert/sweetalert.css">
+    <script type="text/javascript" src="sweetalert/sweetalert.min.js"></script>
+
+    <link rel="stylesheet" href="font/md/materialicons.css">
+
+
+</head>
+
+<body>
+  <div class="app-topbar n-mode">
+     <div class="app-button left">
+      <a href="index.html">
+        <i class="material-icons">refresh</i>
+      </a>
+    </div>
+    <div class="app-title">設定</div>
+  </div>
+
+  <div class="app-content">
+    <div class="app-button"  onTouchStart="check_clear()" >
+      <i class="material-icons">warning
+    </i>
+        データの削除
+    </div>
+    <div class="app-button"><a href="license.html">
+      <i class="material-icons">copyright</i>
+      ライセンス
+    </a>
+    </div>
+
+
+  </div>
+
+<script>
+
+
+
+function check_clear(){
+    setTimeout(msg,100);
+}
+
+function msg(){
+  swal({ title: "全部消すよ?",
+        text: "データをすべて消すします。元には戻りません!",
+        type: "warning",
+        showCancelButton: true,
+        cancelButtonText: "やめとく。",
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "消す!",
+        closeOnConfirm: false },
+        function(){
+             swal({ title: "ほんとに消すよ?",
+                text: "元には戻らないよ!",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "やめとく。",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "消す!",
+                closeOnConfirm: false },
+            function(){
+                 window.localStorage.clear();
+                swal("消しました!",
+                "データはきれいに消えました。",
+                "success");
+            }
+          );
+        }
+    );
+}
+
+</script>
+
+ <script type="text/javascript" src="appjs/app.min.js"></script>
+<script type="text/javascript" src="appjs/zepto.js"></script>
+
+
+
+</body>

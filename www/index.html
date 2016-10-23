@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mathcalator</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+
+    <!-- see http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+    </style>
+
+    <script src="cordova.js"></script>
+              <!-- phantom library, needed for Cordova api calls, added during build -->
+    <script src="js/app.js"></script>           <!-- recommended location of your JavaScript code relative to other JS files -->
+    <script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see README for details -->
+    <script type="text/javascript" async
+  src="js/MathJax24/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="functions.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- appjs -->
+    <link rel="stylesheet" href="appjs/app.min.css">
+
+    <!-- tmaterial icons-->
+    <link rel="stylesheet" href="font/md/materialicons.css">
+
+    <!-- sweetalert -->
+    <link rel="stylesheet" href="sweetalert/sweetalert.css">
+    <script type="text/javascript" src="sweetalert/sweetalert.min.js"></script>
+
+    <!-- mui -->
+    <link href="mui/css/mui.min.css" rel="stylesheet" type="text/css">
+    <script src="mui/js/mui.min.js"></script>
+
+
+    <script>
+     function loadmsg(){
+        swal({title: "Practice Mode!",
+              timer: 1500,
+              showConfirmButton: false });
+    }
+    </script>
+
+</head>
+<body>
+
+<div class="app-topbar p-mode">
+        <div class="left app-button">
+            <a href="setting.html">
+            <i class="material-icons">menu</i>
+            </a>
+        </div>
+    <div class="app-title">数道 PRACTICE MODE</div>
+    <a href="index_t.html">
+      <div class="right app-button">
+            <i class="material-icons">timer</i>
+        </div>
+    </a>
+</div>
+
+<div class="app-contents">
+<li>
+  <strong class="active">四則演算</strong>
+     <ul>
+      <li class="app-list" id="list"></li>
+      </ul>
+</li>
+<li>
+  <strong class="active">速さ</strong>
+  <ul>
+    <li>---</li>
+    <li>---</li>
+    <li>---</li>
+  </ul>
+</li>
+</div>
+
+    <script>
+// make list
+    makeselecter("1","sisoku.csv",10,"四則演算×10",1);
+    makeselecter("2","sisoku.csv",30,"四則演算×30",2);
+    makeselecter("3","sisoku.csv",50,"四則演算×50",2);
+    makeselecter("4","sisoku.csv",100,"四則演算×100",3);
+    makeselecter("5","hayasa.csv",10,"速さ×10",2);
+
+    function makeselecter(No,fname,num,dname,lv){
+      addli(No);
+      adda(No,fname,num);
+      addtable(No);
+      addtr(No);
+      addth(No,lv,dname);
+    }
+
+    function addli(N){
+      var elem = document.createElement("li");
+      elem.classList.add("app-button");
+      elem.id = "li" + N;
+
+      var obj = document.getElementById("list");
+      obj.appendChild(elem);
+
+    }
+
+    function adda(N,name,num){
+      var elem = document.createElement("a");
+      elem.id = "a" + N;
+      elem.href = "practice.html?file=" + name +"&num=" + num + "&No=" + N;
+
+      var obj = document.getElementById("li" + N);
+      obj.appendChild(elem);
+    }
+
+    function addtable(N){
+      var elem = document.createElement("table");
+      elem.id = "table" + N;
+      elem.width = "100%";
+
+      var obj = document.getElementById("a" + N);
+      obj.appendChild(elem);
+    }
+
+    function addtr(N){
+      var elem = document.createElement("tr");
+      elem.id = "tr" + N;
+      elem.align = "left";
+
+      var obj = document.getElementById("table" + N);
+      obj.appendChild(elem);
+    }
+
+    function addth(N,lv,name){
+      var elem1 = document.createElement("th");
+      elem1.id = "tr" + "L" + N;
+      elem1.width = "30%";
+      elem1.classList.add("title");
+      lv = makelv(lv);
+      elem1.textContent = lv;
+
+      var obj = document.getElementById("tr" + N);
+      obj.appendChild(elem1);
+
+      var elem2 = document.createElement("th");
+      elem2.id = "tr" + "N" + N;
+      elem2.width = "50%";
+      elem2.classList.add("title");
+      elem2.textContent = name;
+
+      var obj = document.getElementById("tr" + N);
+      obj.appendChild(elem2);
+
+      var elem3 = document.createElement("th");
+      elem3.id = "tr" + "R" + N;
+      elem3.width = "20%";
+      elem3.classList.add("Rank");
+      var R = makerank(N);
+      elem3.textContent = R;
+
+      var obj = document.getElementById("tr" + N);
+      obj.appendChild(elem3);
+
+    }
+
+    function makelv(lv){
+      if(lv == 0){
+        return "- - - - -";
+      } else if (lv == 1) {
+        return "☆- - - -";
+      } else if (lv == 2) {
+        return "☆☆- - -";
+      } else if (lv == 3) {
+        return "☆☆☆- -";
+      } else if (lv == 4) {
+        return "☆☆☆☆-";
+      } else if (lv == 5) {
+        return "☆☆☆☆☆";
+      } else {
+        return "Unknown..."
+      }
+    }
+
+
+    function makerank(No){
+        var R = window.localStorage.getItem("R_" + No);
+
+      if(R == null){
+       return "---";
+     } else {
+       return R;
+     }
+    }
+
+
+    </script>
+
+     <script type="text/javascript" src="appjs/app.min.js"></script>
+    <script type="text/javascript" src="appjs/zepto.js"></script>
+
+
+
+</body>
+</html>

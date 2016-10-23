@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+<head>
+    <title>Mathvalator</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <!-- see http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+    </style>
+
+    <script src="cordova.js"></script>
+              <!-- phantom library, needed for Cordova api calls, added during build -->
+    <script src="js/app.js"></script>           <!-- recommended location of your JavaScript code relative to other JS files -->
+    <script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see README for details -->
+    <script type="text/javascript" async
+  src="js/MathJax24/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="functions.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- appjs -->
+    <link rel="stylesheet" href="appjs/app.min.css">
+
+    <!-- sweat alert-->
+    <link rel="stylesheet" href="sweetalert/sweetalert.css">
+    <script type="text/javascript" src="sweetalert/sweetalert.min.js"></script>
+
+    <!-- material icons -->
+    <link rel="stylesheet" href="font/md/materialicons.css">
+
+</head>
+<body>
+<div class="app-topbar">
+    <div class="app-button left">
+      <i class="material-icons">
+          <a href="index_t.html">refresh</a>
+      </i>
+    </div>
+
+    <div class="app-title">TimeAttack</div>
+  </div>
+
+    <div class="app-title" id="title"></div>
+  </div>
+
+  <div class="app-content">
+    <div class="app-section">
+      <p id="question" class="question">---</p>
+    </div>
+  </div>
+
+  <div class="app-section">
+      <table>
+        <tbody width="100%">
+            <tr>
+                <th width="90%" id="inputarea" class="answer"></th>
+                <th width="10%" onTouchStart="check()" class="answerbutton">E</th>
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="number">
+        <tbody>
+        <tr>
+            <th onTouchStart="input(7)">7</th>
+            <th onTouchStart="input(8)">8</th>
+            <th onTouchStart="input(9)">9</th>
+            <th onTouchStart="cl()">C</th>
+        </tr>
+        <tr>
+            <th onTouchStart="input(4)">4</th>
+            <th onTouchStart="input(5)">5</th>
+            <th onTouchStart="input(6)">6</th>
+            <th onTouchStart="minus()">-</th>
+        </tr>
+        <tr>
+            <th onTouchStart="input(1)">1</th>
+            <th onTouchStart="input(2)">2</th>
+            <th onTouchStart="input(3)">3</th>
+            <th onTouchStart="input(0)">0</th>
+        </tr>
+        </tbody>
+      </table>
+  </div>
+
+
+<!-- csv load　-->
+<script type="text/javascript">
+
+myans = 0;
+inputarea = document.getElementById("inputarea");
+file = "null";
+pnum = 0;
+num = 0;
+correct = 0;
+No = 0;
+starttime = 0;
+endtime = 0;
+totaltime = 0;
+
+URLremover();
+
+result = [];
+getCSV(file);
+
+setTimeout(start,100);
+setTimeout(start2,1500);
+setTimeout(generate,100);
+setTimeout(qwrite,200);
+
+function start(){
+    swal({
+        title:"よーい",
+        timer: 1000,
+        showConfirmButton: false
+  });
+  starttime = new Date();
+}
+
+function start2(){
+    swal({
+        title:"はじめ！！",
+        timer: 1000,
+        showConfirmButton: false
+  });
+  starttime = new Date();
+}
+    
+
+
+function input(n){
+  if (myans >= 0){
+    myans = myans * 10 + n ;
+  } else {
+    myans = myans * 10 - n ;
+  }
+
+  redraw();
+}
+
+function minus(){
+  myans = myans * -1;
+  redraw();
+}
+
+function cl(){
+  if(myans >= 0){
+    myans = Math.floor( myans / 10 );
+  } else {
+    myans = Math.ceil( myans / 10 );
+  }
+  redraw();
+}
+
+function check(){
+  num = num +1 ;
+  if (ans == myans){
+    inputarea.textContent = "正解！！";
+    myans = 0;
+    correct = correct + 1;
+  } else {
+    inputarea.textContent = "不正解...";
+    myans = 0;
+  }
+
+  if(correct >= pnum){
+    setTimeout(endalert,100);
+
+  } else {
+      generate();
+      qwrite();
+  }
+}
+
+
+function endalert(){
+  endtime = new Date();
+  totaltime = endtime - starttime;
+  setTimeout(timealert,100);
+
+   window.localStorage.setItem("T_"+No, totaltime);
+    setTimeout(backtohome,1000);
+}
+    
+function timealert(){
+    totaltime = datatoint(totaltime);
+    var t = new Date(totaltime);
+    var min = t.getMinutes();
+    var sec = t.getSeconds();
+    var mils = Math.floor(t.getMilliseconds() / 10);
+    var ret =  min + "分" + sec + "秒" + mils;  
+    
+  swal(ret);
+}
+
+function backtohome(){
+    location.href="index_t.html";
+}
+
+
+function redraw(){
+  inputarea.textContent = myans;
+}
+
+function qwrite(){
+    var elem = document.getElementById("question");
+    elem.innerHTML = equation;
+     MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  }
+
+function URLremover(){
+    var arg = new Object;
+    var pair=location.search.substring(1).split('&');
+    for(var i=0;pair[i];i++) {
+        var kv = pair[i].split('=');
+        arg[kv[0]]=kv[1];
+    }
+    file = arg.file;
+    pnum = datatoint(arg.num);
+    No = arg.No;
+}
+
+
+</script>
+
+    <script type="text/javascript" src="appjs/app.min.js"></script>
+    <script type="text/javascript" src="appjs/zepto.js"></script>
+
+
+</body>
+</html>

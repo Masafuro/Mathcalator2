@@ -1,0 +1,74 @@
+{
+  "categorization": {
+    "type": "GAME",
+    "category": "Educational"
+  },
+  "description": {
+    "texts": {
+      "title": "Mathcalator",
+      "features": [
+        "game",
+        "math"
+      ],
+      "short-description": "Math Game for me. It's testing.",
+      "full-description": "I'm testing.........................................................",
+      "keywords": "math,game,",
+      "recent-changes": "",
+      "privacy-policy": "",
+      "eula": ""
+    },
+    "images": {
+      "screenshots": [
+        "../img/screenshot01.png",
+        "../img/screenshot02.png",
+        "../img/screenshot03.png"
+      ],
+      "app-icon-small": "../img/logo_114.png",
+      "app-icon": "../img/logo_512.png",
+      "small-promo": "",
+      "large-promo": "../img/screenimage1024.png"
+    },
+    "videos": {
+      "video-url": ""
+    }
+  },
+  "packages": {
+    "apk-file": "../../../Desktop/ExportAPKs/cordova_project-x86.android.20161010111429.apk",
+    "zip-xdk-compliant": true,
+    "zip-file": "../../../Desktop/ExportAPKs/mathcalator.cordova.crosswalk.201610101238.zip",
+    "secondary-apk-file": "../../../Desktop/ExportAPKs/cordova_project-armv7.android.20161010111449.apk"
+  },
+  "support": {
+    "email": "apa226@gmail.com",
+    "website": ""
+  },
+  "testing-instructions": "2016-10-01",
+  "description-ja": {
+    "texts": {
+      "title": "数道 ~Mathcalator~",
+      "features": [
+        "数学"
+      ],
+      "short-description": "（まだ開発中です）算数・数学の問題生成プラットフォーム",
+      "full-description": "（まだ開発中です）算数・数学の問題生成プラットフォーム",
+      "keywords": "数学,算数",
+      "recent-changes": "",
+      "privacy-policy": "",
+      "eula": ""
+    },
+    "images": {
+      "screenshots": [
+        "../img/screenshot01.png",
+        "../img/screenshot02.png",
+        "../img/screenshot03.png"
+      ],
+      "app-icon-small": "../img/logo_114.png",
+      "app-icon": "../img/logo_512.png",
+      "small-promo": "",
+      "large-promo": "../img/screenimage1024.png"
+    },
+    "videos": {
+      "video-url": ""
+    }
+  }
+}

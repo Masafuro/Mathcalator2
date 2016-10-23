@@ -1,0 +1,155 @@
+html{
+  height: 100%;
+
+
+}
+body {
+background-color: #ffffff;
+height:100%;
+}
+
+a {
+  color: currentColor;
+text-decoration: none;
+}
+
+@font-face {
+    font-family: "rank";
+    src: url("font/Rabelo_Regular.ttf");
+}
+
+@font-face {
+  font-family: "key";
+  src: url("font/18holes.ttf");
+}
+
+@font-face {
+    font-family: "title";
+    src: url("font/ki_kokumin.ttf");
+}
+
+@font-face {
+    font-family: "kokugo";
+    src: url("font/ki_kokugo.ttf");
+}
+
+
+
+
+.app-title{
+        font-size: 3rem;
+}
+
+.title{
+        font-family: title;
+        color: #333333;
+        font-size: 1.2rem;
+}
+
+.Rank {
+         font-family: rank;
+         font-size: 2rem;
+         color: #FF0000;
+
+}
+
+.number{
+        font-family: key;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 4.5rem;
+        text-align: center;
+}
+
+.tenkey{
+        font-family: key;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 3.5rem;
+        text-align: center;
+        color: #FFF;
+}
+
+.device{
+  background-image: url(img/pattern1.png);
+  background-repeat: repeat;
+}
+
+
+.answer{
+  font-family: title;
+  color: #333333;
+  font-size: 2.3rem;
+
+}
+
+.answerbutton{
+        font-family: key;
+        font-size: 3rem;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+}
+
+.question{
+        font-family: kokugo;
+        font-size: 1.5rem;
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+}
+
+.white{
+      color: white;
+}
+
+.p-mode{
+  background-color: #32cce0
+}
+
+.t-mode{
+  background-color: #ed1239
+}
+
+.n-mode{
+  background-color: #545454
+}
+
+.console {
+    border: 1px solid #666;
+
+    color: #befbf9;
+    text-shadow: 0px 0px 20px rgba(255,255,0,1);
+    background-color: #000;
+
+    font-family: "ＭＳ ゴシック","Andale Mono",Courier,Monospace;
+    font-size:     1.2em;
+    line-height:   100%;
+    margin-bottom: 0.4em;
+    margin-left:   auto;
+    margin-right:  auto;
+    padding:       0.4em 0.4em;
+    white-space:   pre;
+    height: 25%;
+}
+
+.console:after{
+  content:" _";
+  opacity: 0;
+  animation: cursor 1s infinite;
+}
+
+.app-content{
+  height: 100%;
+}
+
+
+/* console */
+
+@keyframes cursor {
+	0%  { opacity: 0; }
+	40% { opacity: 0;	}
+	50% {	opacity: 1;	}
+	90% {	opacity: 1;	}
+	100% { opacity: 0; }
+}
