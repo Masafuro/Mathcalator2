@@ -31,17 +31,28 @@
     <link rel="stylesheet" href="sweetalert/sweetalert.css">
     <script type="text/javascript" src="sweetalert/sweetalert.min.js"></script>
 
-    <!-- mui -->
-    <link href="mui/css/mui.min.css" rel="stylesheet" type="text/css">
-    <script src="mui/js/mui.min.js"></script>
+    <!-- jquery -->
+    <script type="text/javascript" src="jquery/jquery-3.1.1.min.js"></script>
+
+    <!-- jquery UI -->
+    <script type="text/javascript" src="jqueryUI/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="jqueryUI/jquery-ui.css">
 
 
     <script>
+
      function loadmsg(){
         swal({title: "Practice Mode!",
               timer: 1500,
               showConfirmButton: false });
     }
+
+    $( function() {
+      $( "#accordion" ).accordion({
+        collapsible: true
+      });
+    } );
+
     </script>
 
 </head>
@@ -62,23 +73,20 @@
 </div>
 
 <div class="app-contents">
-<li>
-  <strong class="active">四則演算</strong>
-     <ul>
-      <li class="app-list" id="list"></li>
-      </ul>
-</li>
-<li>
-  <strong class="active">速さ</strong>
-  <ul>
-    <li>---</li>
-    <li>---</li>
-    <li>---</li>
-  </ul>
-</li>
+  <div id="accordion">
+      <h3>四則演算</h3>
+        <div id="list"></div>
+      <h3>速さ</h3>
+      <div></div>
+    </div>
+  </div>
 </div>
 
-    <script>
+
+
+
+<script>
+
 // make list
     makeselecter("1","sisoku.csv",10,"四則演算×10",1);
     makeselecter("2","sisoku.csv",30,"四則演算×30",2);
