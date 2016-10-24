@@ -47,9 +47,12 @@
               showConfirmButton: false });
     }
 
+    // Accordion for jquery UI
     $( function() {
       $( "#accordion" ).accordion({
-        collapsible: true
+        collapsible: true,
+         heightStyle: "content",
+         animate: 30
       });
     } );
 
@@ -75,39 +78,36 @@
 <div class="app-contents">
   <div id="accordion">
       <h3>四則演算</h3>
-        <div id="list"></div>
+        <div id="l1"></div>
       <h3>速さ</h3>
-      <div></div>
+      <div id="l2"></div>
     </div>
   </div>
 </div>
 
-
-
-
 <script>
 
 // make list
-    makeselecter("1","sisoku.csv",10,"四則演算×10",1);
-    makeselecter("2","sisoku.csv",30,"四則演算×30",2);
-    makeselecter("3","sisoku.csv",50,"四則演算×50",2);
-    makeselecter("4","sisoku.csv",100,"四則演算×100",3);
-    makeselecter("5","hayasa.csv",10,"速さ×10",2);
+    makeselecter("1","sisoku.csv",10,"四則演算×10",1,"l1");
+    makeselecter("2","sisoku.csv",30,"四則演算×30",2,"l1");
+    makeselecter("3","sisoku.csv",50,"四則演算×50",2,"l1");
+    makeselecter("4","sisoku.csv",100,"四則演算×100",3,"l1");
+    makeselecter("5","hayasa.csv",10,"速さ×10",2,"l2");
 
-    function makeselecter(No,fname,num,dname,lv){
-      addli(No);
+    function makeselecter(No,fname,num,dname,lv,id){
+      addli(No,id);
       adda(No,fname,num);
       addtable(No);
       addtr(No);
       addth(No,lv,dname);
     }
 
-    function addli(N){
+    function addli(N,id){
       var elem = document.createElement("li");
       elem.classList.add("app-button");
       elem.id = "li" + N;
 
-      var obj = document.getElementById("list");
+      var obj = document.getElementById(id);
       obj.appendChild(elem);
 
     }
