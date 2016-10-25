@@ -21,99 +21,46 @@
     <script type="text/javascript" src="functions.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 
+    <!-- appjs -->
+    <link rel="stylesheet" href="appjs/app.min.css">
 
     <!-- tmaterial icons-->
     <link rel="stylesheet" href="font/md/materialicons.css">
 
-    <!-- OnsenUI-->
-    <link rel="stylesheet" href="OnsenUI/css/onsenui.css" />
-    <link rel="stylesheet" href="OnsenUI/css/onsen-css-components.css" />
-    <script src="OnsenUI/js/onsenui.js"></script>
+    <!-- sweetalert -->
+    <link rel="stylesheet" href="sweetalert/sweetalert.css">
+    <script type="text/javascript" src="sweetalert/sweetalert.min.js"></script>
+
+    <!-- jquery -->
+    <script type="text/javascript" src="jquery/jquery-3.1.1.min.js"></script>
+
+    <!-- jquery UI -->
+    <script type="text/javascript" src="jqueryUI/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="jqueryUI/jquery-ui.css">
+
+
+    <script>
+
+     function loadmsg(){
+        swal({title: "Practice Mode!",
+              timer: 1500,
+              showConfirmButton: false });
+    }
+
+    // Accordion for jquery UI
+    $( function() {
+      $( "#accordion" ).accordion({
+        collapsible: true,
+         heightStyle: "content",
+         animate: 30
+      });
+    } );
+
+    </script>
 
 </head>
 <body>
 
-<ons-navigator id="myNavigator" page="page1.html"></ons-navigator>
-
-<ons-template id="page1.html">
-<ons-page id="page1">
-  <ons-toolbar>
-    <div class="left">
-      <ons-toolbar-button>
-        <ons-icon icon="fa-bars"></ons-icon>
-      </ons-toolbar-button>
-    </div>
-    <div class="center">算数王への道</div>
-    <div class="right">
-      <ons-toolbar-button>
-        <i class="material-icons">help_outline</i>
-      </ons-toolbar-button>
-    </div>
-  </ons-toolbar>
-
-  <ons-list>
-    <ons-list-item modifier="chevron" tappable id="push2">
-      計算</ons-list-item>
-    <ons-list-item modifier="chevron" tappable id="push3">
-      速さ</ons-list-item>
-  </ons-list>
-</ons-page>
-</ons-template>
-
-<ons-template id="page2.html">
-  <ons-page id="page2">
-    <ons-toolbar>
-      <div class="left"><ons-back-button>Back</ons-back-button></div>
-      <div class="center">計算</div>
-    </ons-toolbar>
-
-    <ons-list>
-      <ons-list-item modifier="chevron" tappable id="test">
-        計算10</ons-list-item>
-      <ons-list-item modifier="chevron" tappable>
-        計算20</ons-list-item>
-    </ons-list>
-  </ons-page>
-</ons-template>
-
-<ons-template id="page3.html">
-  <ons-page id="page3">
-    <ons-toolbar>
-      <div class="left"><ons-back-button>Back</ons-back-button></div>
-      <div class="center">速さ</div>
-    </ons-toolbar>
-
-    <ons-list>
-      <ons-list-item modifier="chevron" tappable>
-        速さ10</ons-list-item>
-      <ons-list-item modifier="chevron" tappable>
-        速さ20</ons-list-item>
-    </ons-list>
-  </ons-page>
-</ons-template>
-
-<script>
-document.addEventListener('init', function(event) {
-  var page = event.target;
-
-  if (page.id === 'page1') {
-    page.querySelector('#push2').onclick = function() {
-      document.querySelector('#myNavigator').pushPage('page2.html', {data: {title: 'Page 2'}});
-    };
-    page.querySelector('#push3').onclick = function() {
-      document.querySelector('#myNavigator').pushPage('page3.html', {data: {title: 'Page 3'}});
-    };
-  }
-
-  page.querySelector('#test').onclick = function (){
-    window.location.href="practice.html";
-  };
-});
-
-
-</script>
-
-<!--
 <div class="app-topbar p-mode">
         <div class="left app-button">
             <a href="setting.html">
@@ -137,7 +84,6 @@ document.addEventListener('init', function(event) {
     </div>
   </div>
 </div>
--->
 
 <script>
 
