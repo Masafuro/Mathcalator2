@@ -30,16 +30,15 @@
     <link rel="stylesheet" href="OnsenUI/css/onsen-css-components.css" />
     <script src="OnsenUI/js/onsenui.js"></script>
 
+
 </head>
 <body>
-
-<ons-navigator id="myNavigator" page="page1.html"></ons-navigator>
 
 <ons-template id="page1.html">
 <ons-page id="page1">
   <ons-toolbar>
     <div class="left">
-      <ons-toolbar-button>
+      <ons-toolbar-button  onclick="fn.open()">
         <ons-icon icon="fa-bars"></ons-icon>
       </ons-toolbar-button>
     </div>
@@ -52,9 +51,9 @@
   </ons-toolbar>
 
   <ons-list>
-    <ons-list-item modifier="chevron" tappable id="push2">
+    <ons-list-item modifier="chevron" tappable onclick=content.load("page2.html")>
       計算</ons-list-item>
-    <ons-list-item modifier="chevron" tappable id="push3">
+    <ons-list-item modifier="chevron" tappable onclick=content.load("page3.html")>
       速さ</ons-list-item>
   </ons-list>
 </ons-page>
@@ -63,7 +62,8 @@
 <ons-template id="page2.html">
   <ons-page id="page2">
     <ons-toolbar>
-      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="left">
+        <ons-back-button onclick=content.load("page1.html")>Back</ons-back-button></div>
       <div class="center">計算</div>
     </ons-toolbar>
 
@@ -79,7 +79,8 @@
 <ons-template id="page3.html">
   <ons-page id="page3">
     <ons-toolbar>
-      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="left">
+        <ons-back-button onclick=content.load("page1.html")>Back</ons-back-button></div>
       <div class="center">速さ</div>
     </ons-toolbar>
 
@@ -92,23 +93,52 @@
   </ons-page>
 </ons-template>
 
+<ons-splitter>
+  <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+    <ons-page>
+      <ons-list>
+        <ons-list-item onclick="fn.load('home.html')" tappable>
+          Home
+        </ons-list-item>
+        <ons-list-item onclick="fn.load('settings.html')" tappable>
+          Settings
+        </ons-list-item>
+        <ons-list-item onclick="fn.load('about.html')" tappable>
+          About
+        </ons-list-item>
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
+  <ons-splitter-content id="content" page="page1.html"></ons-splitter-content>
+</ons-splitter>
+
 <script>
+
 document.addEventListener('init', function(event) {
   var page = event.target;
-
   if (page.id === 'page1') {
+
     page.querySelector('#push2').onclick = function() {
       document.querySelector('#myNavigator').pushPage('page2.html', {data: {title: 'Page 2'}});
     };
+
     page.querySelector('#push3').onclick = function() {
       document.querySelector('#myNavigator').pushPage('page3.html', {data: {title: 'Page 3'}});
     };
   }
+})
 
-  page.querySelector('#test').onclick = function (){
-    window.location.href="practice.html";
-  };
-});
+window.fn = {};
+window.fn.open = function() {
+  var menu = document.getElementById('menu');
+  menu.open();
+};
+window.fn.load = function(page) {
+  var content = document.getElementById('content');
+  var menu = document.getElementById('menu');
+  content.load(page)
+    .then(menu.close.bind(menu));
+};
 
 
 </script>
@@ -142,6 +172,7 @@ document.addEventListener('init', function(event) {
 <script>
 
 // make list
+
     makeselecter("1","sisoku.csv",10,"四則演算×10",1,"l1");
     makeselecter("2","sisoku.csv",30,"四則演算×30",2,"l1");
     makeselecter("3","sisoku.csv",50,"四則演算×50",2,"l1");
@@ -257,10 +288,6 @@ document.addEventListener('init', function(event) {
 
 
     </script>
-
-     <script type="text/javascript" src="appjs/app.min.js"></script>
-    <script type="text/javascript" src="appjs/zepto.js"></script>
-
 
 
 </body>

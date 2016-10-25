@@ -67,12 +67,11 @@ text-decoration: none;
         margin-right: auto;
         font-size: 3.5rem;
         text-align: center;
-        color: #FFF;
+        color: #333333;
 }
 
 .device{
-  background-image: url(img/pattern1.png);
-  background-repeat: repeat;
+
 }
 
 
@@ -118,9 +117,9 @@ text-decoration: none;
 .console {
     border: 1px solid #666;
 
-    color: #befbf9;
+    color: #FFFFFF;
     text-shadow: 0px 0px 20px rgba(255,255,0,1);
-    background-color: #000;
+    background-color: #444444;
 
     font-family: "ＭＳ ゴシック","Andale Mono",Courier,Monospace;
     font-size:     1.2em;

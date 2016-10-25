@@ -23,30 +23,71 @@
     <script type="text/javascript" src="functions.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 
-    <!-- appjs -->
-    <link rel="stylesheet" href="appjs/app.min.css">
-
-    <!-- sweat alert-->
-    <link rel="stylesheet" href="sweetalert/sweetalert.css">
-    <script type="text/javascript" src="sweetalert/sweetalert.min.js"></script>
-
     <!-- material icons -->
     <link rel="stylesheet" href="font/md/materialicons.css">
 
+    <!-- OnsenUI-->
+    <link rel="stylesheet" href="OnsenUI/css/onsenui.css" />
+    <link rel="stylesheet" href="OnsenUI/css/onsen-css-components.css" />
+    <script src="OnsenUI/js/onsenui.js"></script>
+
 </head>
-<body class="device">
+<body>
+
+<ons-page>
+  <ons-toolbar>
+    <div class="left" onclick="back_home()">
+      <ons-toolbar-button>
+        <i class="material-icons">navigate_before</i>
+      </ons-toolbar-button>
+    </div>
+    <div class="center">Practice MODE</div>
+    <div class="right">
+    </div>
+  </ons-toolbar>
+
+  <p class="console">
+      <span id="question"></span>
+      <span id="inputarea"></span>
+  </p>
+
+  <table class="tenkey">
+    <tbody>
+    <tr>
+        <th onTouchStart="input(7)">7</th>
+        <th onTouchStart="input(8)">8</th>
+        <th onTouchStart="input(9)">9</th>
+        <th onTouchStart="cl()">C</th>
+    </tr>
+    <tr>
+        <th onTouchStart="input(4)">4</th>
+        <th onTouchStart="input(5)">5</th>
+        <th onTouchStart="input(6)">6</th>
+        <th onTouchStart="input(0)">0</th>
+    </tr>
+    <tr>
+        <th onTouchStart="input(1)">1</th>
+        <th onTouchStart="input(2)">2</th>
+        <th onTouchStart="input(3)">3</th>
+        <th onTouchStart="check()">E</th>
+    </tr>
+    </tbody>
+  </table>
+</ons-page>
+
+<!--
 <div class="app-topbar">
     <div class="app-button left">
     </div>
-    <div class="app-title">DOME 35.5,139.8</div>
+    <div class="app-title">DOME</div>
 </div>
 
   <div class="app-content">
       <p class="console">
-          <span id="question">---</span>
+          <span id="question">-</span>
           <span id="inputarea"></span>
       </p>
-      
+
       <table class="tenkey">
         <tbody>
         <tr>
@@ -71,6 +112,7 @@
       </table>
     </div>
 
+-->
 <!-- csv load　-->
 <script type="text/javascript">
 
@@ -166,7 +208,7 @@ function salert(){
         rank = "E"
     }
 
-    swal(rank);
+    ons.notification.alert(rank);
    window.localStorage.setItem("R_"+No , rank);
     setTimeout(backtohome,1000);
 }
