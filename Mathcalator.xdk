@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-project-lite/sample.zip",
       "projectGuid": "e5ec0bb5-30d3-4c99-8999-a3fff5f8f37d",
-      "lastModifiedDate": 1476097939930,
+      "lastModifiedDate": 1477443459411,
       "creationDate": 1474201912522
     },
     "XDK-app-designer": "false",
@@ -138,44 +138,15 @@
             "height": 96
           }
         ],
-        "splashes_": [
-          {
-            "relPath": "package-assets/splash720.png",
-            "density": "xhdpi",
-            "height": 960,
-            "width": 720,
-            "orientation": "portrait"
-          },
-          {
-            "relPath": "package-assets/splash480.png",
-            "density": "hdpi",
-            "height": 640,
-            "width": 480,
-            "orientation": "portrait"
-          },
-          {
-            "relPath": "package-assets/splash320.png",
-            "density": "ldpi",
-            "height": 426,
-            "width": 320,
-            "orientation": "portrait"
-          },
-          {
-            "relPath": "package-assets/splash320_470.png",
-            "density": "mdpi",
-            "height": 470,
-            "width": 320,
-            "orientation": "portrait"
-          }
-        ],
+        "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "6.2.0",
         "crosswalkVersion_": "19",
-        "appVersion_": "0.1",
+        "appVersion_": "0.2",
         "appDescription_": "Math ",
         "appAuthor_": "RattoOffice",
-        "appVersionCode_": "16",
+        "appVersionCode_": "17",
         "signed_": true
       },
       "iOS": {
