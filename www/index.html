@@ -37,7 +37,6 @@
 </head>
 <body>
 
-
 <ons-template id="page1.html">
 <ons-page id="page1">
   <ons-toolbar>
@@ -47,14 +46,14 @@
       </ons-toolbar-button>
     </div>
     <div class="center" width="60%" align="center">
-      <i class="material-icons">home</i>
+      <img src="img/test.gif" height="90%">
     </div>
     <div class="right" id="toolbar-right">
       <ons-toolbar-button id="volume_button" onclick="pause();">
           <i class="material-icons" id="v_icon">volume_up</i>
       </ons-toolbar-button>
       <audio src="Music/Have_a_break.wav" autoplay loop id="bgm">
-    </div>
+      </div>
   </ons-toolbar>
 
   <ons-list>
@@ -121,6 +120,7 @@
         <ons-back-button onclick=content.load("page1.html")></ons-back-button></div>
       <div class="center">
         <i class="material-icons">info</i></div>
+        <audio src="Music/about.wav" autoplay loop id="bgm">
     </ons-toolbar>
     <p>info</p>
   </ons-page>
@@ -133,11 +133,11 @@
         <ons-back-button onclick=content.load("page1.html")></ons-back-button></div>
       <div class="center">
         <i class="material-icons">help_outline</i></div>
+        <audio src="Music/help.wav" autoplay loop id="bgm">
     </ons-toolbar>
     <p>HELP</p>
   </ons-page>
 </ons-template>
-
 
 <ons-splitter>
   <ons-splitter-side id="menu" width="25%" side="left" collapse swipeable>
@@ -156,18 +156,24 @@
           <i class="material-icons">help_outline</i>
         </ons-list-item>
       </ons-list>
+      <audio src="SE/pon.ogg" id="menu_sound">
     </ons-page>
   </ons-splitter-side>
   <ons-splitter-content id="content" page="page1.html"></ons-splitter-content>
 </ons-splitter>
 
+
 <script>
 
 window.fn = {};
+
 window.fn.open = function() {
   var menu = document.getElementById('menu');
   menu.open();
+  var se = document.getElementById('menu_sound');
+  se.play();
 };
+
 window.fn.load = function(page) {
   var content = document.getElementById('content');
   var menu = document.getElementById('menu');
@@ -176,7 +182,6 @@ window.fn.load = function(page) {
 };
 
 // sound
-
 
 function pause(){
   var sound = document.getElementById("bgm");
@@ -196,8 +201,6 @@ function play(){
 
   var icon = document.getElementById("v_icon");
   icon.innerHTML = "volume_up";
-
-
 }
 
 </script>
@@ -231,7 +234,6 @@ function play(){
 <script>
 
 // make list
-
     makeselecter("1","sisoku.csv",10,"四則演算×10",1,"l1");
     makeselecter("2","sisoku.csv",30,"四則演算×30",2,"l1");
     makeselecter("3","sisoku.csv",50,"四則演算×50",2,"l1");
