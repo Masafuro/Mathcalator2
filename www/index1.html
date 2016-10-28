@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mathcalator</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
+
+    <!-- see http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+    </style>
+
+    <script src="cordova.js"></script>
+              <!-- phantom library, needed for Cordova api calls, added during build -->
+    <script src="js/app.js"></script>           <!-- recommended location of your JavaScript code relative to other JS files -->
+    <script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see README for details -->
+    <script type="text/javascript" async
+  src="js/MathJax24/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="functions.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+    <!-- tmaterial icons-->
+    <link rel="stylesheet" href="font/md/materialicons.css">
+
+    <!-- OnsenUI-->
+    <link rel="stylesheet" href="OnsenUI/css/onsenui.css" />
+    <link rel="stylesheet" href="OnsenUI/css/onsen-css-components.css" />
+    <script src="OnsenUI/js/onsenui.js"></script>
+
+    <script>
+    ons.disableAutoStyling();
+        
+    </script>
+
+</head>
+<body>
+
+<ons-template id="page1.html">
+<ons-page id="page1">
+  <ons-toolbar>
+    <div class="left" width="20%">
+      <ons-toolbar-button  onclick="fn.open()">
+        <ons-icon icon="fa-bars"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+    <div class="center" width="60%" align="center">
+      <img src="img/test.gif" height="90%">
+    </div>
+    <div class="right" id="toolbar-right">
+      <ons-toolbar-button id="volume_button" onclick="pause();">
+          <i class="material-icons" id="v_icon" color="#333333">volume_up</i>
+      </ons-toolbar-button>
+      <audio src="Music/Have_a_break.ogg" autoplay loop id="bgm">
+        </audio>
+      </div>
+  </ons-toolbar>
+
+  <ons-list>
+    <ons-list-item modifier="chevron" tappable onclick=content.load("page2.html")>
+      1+2=3</ons-list-item>
+    <ons-list-item modifier="chevron" tappable onclick=content.load("page3.html")>
+      2[m/s] = 6[m] ÷ 3[s]
+    </ons-list-item>
+  </ons-list>
+</ons-page>
+</ons-template>
+
+<ons-template id="page2.html">
+  <ons-page id="page2">
+
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button onclick=content.load("page1.html")></ons-back-button></div>
+      <div class="center">1+2=3</div>
+    </ons-toolbar>
+
+    <ons-list>
+      <ons-list-item modifier="chevron" tappable id="test">
+        ×10</ons-list-item>
+      <ons-list-item modifier="chevron" tappable>
+        ×20</ons-list-item>
+    </ons-list>
+  </ons-page>
+</ons-template>
+
+<ons-template id="page3.html">
+  <ons-page id="page3">
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button onclick=content.load("page1.html")></ons-back-button></div>
+      <div class="center">  2[m/s] = 6[m] ÷ 3[s]</div>
+    </ons-toolbar>
+
+    <ons-list>
+      <ons-list-item modifier="chevron" tappable>
+        ×10</ons-list-item>
+      <ons-list-item modifier="chevron" tappable>
+        ×20</ons-list-item>
+    </ons-list>
+  </ons-page>
+</ons-template>
+
+<ons-template id="setting.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button onclick=content.load("page1.html")></ons-back-button></div>
+      <div class="center">
+        <i class="material-icons">settings</i></div>
+    </ons-toolbar>
+    <p>Setting</p>
+  </ons-page>
+</ons-template>
+
+<ons-template id="info.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button onclick=content.load("page1.html")></ons-back-button></div>
+      <div class="center">
+        <i class="material-icons">info</i></div>
+        <audio src="Music/about.ogg" autoplay loop id="bgm"></audio>
+    </ons-toolbar>
+    <p>info</p>
+  </ons-page>
+</ons-template>
+
+<ons-template id="help.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button onclick=content.load("page1.html")></ons-back-button></div>
+      <div class="center">
+        <i class="material-icons">help_outline</i></div>
+        <audio src="Music/help.ogg" autoplay loop id="bgm"></audio>
+    </ons-toolbar>
+    <p>HELP</p>
+  </ons-page>
+</ons-template>
+
+<ons-splitter>
+  <ons-splitter-side id="menu" width="25%" side="left" collapse swipeable>
+    <ons-page>
+      <ons-list align="center">
+        <ons-list-item onclick="fn.load('page1.html')" tappable>
+          <i class="material-icons">home</i>
+        </ons-list-item>
+        <ons-list-item onclick="fn.load('setting.html')" tappable>
+          <i class="material-icons">settings</i>
+        </ons-list-item>
+        <ons-list-item onclick="fn.load('info.html')" tappable>
+          <i class="material-icons">info</i>
+        </ons-list-item>
+        <ons-list-item onclick=fn.load("help.html")>
+          <i class="material-icons">help_outline</i>
+        </ons-list-item>
+      </ons-list>
+        <audio src="SE/pon.ogg" preload="auto" id="menu_sound"></audio>
+    </ons-page>
+  </ons-splitter-side>
+  <ons-splitter-content id="content" page="page1.html"></ons-splitter-content>
+</ons-splitter>
+
+
+<script>
+
+window.fn = {};
+
+window.fn.open = function() {
+  var menu = document.getElementById('menu');
+  menu.open();
+  var se = document.getElementById('menu_sound');
+  se.play();
+};
+
+window.fn.load = function(page) {
+  var content = document.getElementById('content');
+  var menu = document.getElementById('menu');
+  content.load(page)
+    .then(menu.close.bind(menu));
+};
+
+// sound
+
+function pause(){
+  var sound = document.getElementById("bgm");
+  sound.pause();
+  var button = document.getElementById("volume_button");
+  button.onclick = new Function("play();");
+
+  var icon = document.getElementById("v_icon");
+  icon.innerHTML = "volume_off";
+}
+
+function play(){
+  var sound = document.getElementById("bgm");
+  sound.play();
+  var button = document.getElementById("volume_button");
+  button.onclick = new Function("pause();");
+
+  var icon = document.getElementById("v_icon");
+  icon.innerHTML = "volume_up";
+}
+
+</script>
+
+<!--
+<div class="app-topbar p-mode">
+        <div class="left app-button">
+            <a href="setting.html">
+            <i class="material-icons">menu</i>
+            </a>
+        </div>
+    <div class="app-title">数道 PRACTICE MODE</div>
+    <a href="index_t.html">
+      <div class="right app-button">
+            <i class="material-icons">timer</i>
+        </div>
+    </a>
+</div>
+
+<div class="app-contents">
+  <div id="accordion">
+      <h3>四則演算</h3>
+        <div id="l1"></div>
+      <h3>速さ</h3>
+      <div id="l2"></div>
+    </div>
+  </div>
+</div>
+-->
+
+<script>
+
+// make list
+    makeselecter("1","sisoku.csv",10,"四則演算×10",1,"l1");
+    makeselecter("2","sisoku.csv",30,"四則演算×30",2,"l1");
+    makeselecter("3","sisoku.csv",50,"四則演算×50",2,"l1");
+    makeselecter("4","sisoku.csv",100,"四則演算×100",3,"l1");
+    makeselecter("5","hayasa.csv",10,"速さ×10",2,"l2");
+    makeselecter("6","hayasa.csv",20,"速さ×20",2,"l2");
+
+    function makeselecter(No,fname,num,dname,lv,id){
+      addli(No,id);
+      adda(No,fname,num);
+      addtable(No);
+      addtr(No);
+      addth(No,lv,dname);
+    }
+
+    function addli(N,id){
+      var elem = document.createElement("li");
+      elem.classList.add("app-button");
+      elem.id = "li" + N;
+
+      var obj = document.getElementById(id);
+      obj.appendChild(elem);
+
+    }
+
+    function adda(N,name,num){
+      var elem = document.createElement("a");
+      elem.id = "a" + N;
+      elem.href = "practice.html?file=" + name +"&num=" + num + "&No=" + N;
+
+      var obj = document.getElementById("li" + N);
+      obj.appendChild(elem);
+    }
+
+    function addtable(N){
+      var elem = document.createElement("table");
+      elem.id = "table" + N;
+      elem.width = "100%";
+
+      var obj = document.getElementById("a" + N);
+      obj.appendChild(elem);
+    }
+
+    function addtr(N){
+      var elem = document.createElement("tr");
+      elem.id = "tr" + N;
+      elem.align = "left";
+
+      var obj = document.getElementById("table" + N);
+      obj.appendChild(elem);
+    }
+
+    function addth(N,lv,name){
+      var elem1 = document.createElement("th");
+      elem1.id = "tr" + "L" + N;
+      elem1.width = "30%";
+      elem1.classList.add("title");
+      lv = makelv(lv);
+      elem1.textContent = lv;
+
+      var obj = document.getElementById("tr" + N);
+      obj.appendChild(elem1);
+
+      var elem2 = document.createElement("th");
+      elem2.id = "tr" + "N" + N;
+      elem2.width = "50%";
+      elem2.classList.add("title");
+      elem2.textContent = name;
+
+      var obj = document.getElementById("tr" + N);
+      obj.appendChild(elem2);
+
+      var elem3 = document.createElement("th");
+      elem3.id = "tr" + "R" + N;
+      elem3.width = "20%";
+      elem3.classList.add("Rank");
+      var R = makerank(N);
+      elem3.textContent = R;
+
+      var obj = document.getElementById("tr" + N);
+      obj.appendChild(elem3);
+
+    }
+
+    function makelv(lv){
+      if(lv == 0){
+        return "- - - - -";
+      } else if (lv == 1) {
+        return "☆- - - -";
+      } else if (lv == 2) {
+        return "☆☆- - -";
+      } else if (lv == 3) {
+        return "☆☆☆- -";
+      } else if (lv == 4) {
+        return "☆☆☆☆-";
+      } else if (lv == 5) {
+        return "☆☆☆☆☆";
+      } else {
+        return "Unknown..."
+      }
+    }
+
+
+    function makerank(No){
+        var R = window.localStorage.getItem("R_" + No);
+
+      if(R == null){
+       return "---";
+     } else {
+       return R;
+     }
+    }
+
+
+    </script>
+
+
+</body>
+</html>

@@ -33,10 +33,10 @@
     }
   },
   "packages": {
-    "apk-file": "../../../Desktop/ExportAPKs/cordova_project-x86.android.20161025104843.apk",
+    "apk-file": "../../../Desktop/ExportAPKs/cordova_project-x86.android.20161028032219.apk",
     "zip-xdk-compliant": true,
-    "zip-file": "../../../Desktop/ExportAPKs/mathcalator.cordova.crosswalk.201610254339.zip",
-    "secondary-apk-file": "../../../Desktop/ExportAPKs/cordova_project-armv7.android.20161025104919.apk"
+    "zip-file": "../../../Desktop/ExportAPKs/mathcalator.cordova.crosswalk.201610282013.zip",
+    "secondary-apk-file": "../../../Desktop/ExportAPKs/cordova_project-armv7.android.20161028032234.apk"
   },
   "support": {
     "email": "apa226@gmail.com",
