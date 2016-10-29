@@ -56,9 +56,9 @@
       </div>
   </ons-toolbar>
 
-  <ons-list>
+  <ons-list id="main_list">
     <div id="l1" style="display:none">
-      <ons-list-item modifier="chevron" tappable onclick=content.load("page2.html")>
+      <ons-list-item modifier="chevron" tappable onclick=fn.load("page2.html")>
         1+2=3</ons-list-item>
     </div>
     <div id="l2" style="display:none">
@@ -73,6 +73,10 @@
       <ons-list-item modifier="chevron" tappable>
         LIST04</ons-list-item>
     </div>
+    <script>
+      setTimeout(g_now,500)
+
+    </script>
   </ons-list>
 </ons-page>
 </ons-template>
@@ -81,7 +85,7 @@
   <ons-page id="page2">
     <ons-toolbar>
       <div class="left">
-        <ons-back-button onclick=content.load("page1.html")></ons-back-button></div>
+        <ons-back-button onclick=fn.load("page1.html")></ons-back-button></div>
       <div class="center">1+2=3</div>
     </ons-toolbar>
 
@@ -98,7 +102,7 @@
   <ons-page id="page3">
     <ons-toolbar>
       <div class="left">
-        <ons-back-button onclick=content.load("page1.html")></ons-back-button></div>
+        <ons-back-button onclick=fn.load("page1.html")></ons-back-button></div>
       <div class="center">  2[m/s] = 6[m] ÷ 3[s]</div>
     </ons-toolbar>
 
@@ -115,7 +119,7 @@
   <ons-page>
     <ons-toolbar>
       <div class="left">
-        <ons-back-button onclick=content.load("page1.html")></ons-back-button></div>
+        <ons-back-button onclick=fn.load("page1.html")></ons-back-button></div>
       <div class="center">
         <i class="material-icons">settings</i></div>
     </ons-toolbar>
@@ -127,7 +131,7 @@
   <ons-page>
     <ons-toolbar>
       <div class="left">
-        <ons-back-button onclick=content.load("page1.html")></ons-back-button></div>
+        <ons-back-button onclick=fn.load("page1.html")></ons-back-button></div>
       <div class="center">
         <i class="material-icons">info</i></div>
                 <audio src="Music/about.ogg" autoplay loop id="about_sound"></audio>
@@ -140,7 +144,7 @@
   <ons-page>
     <ons-toolbar>
       <div class="left">
-        <ons-back-button onclick=content.load("page1.html")></ons-back-button></div>
+        <ons-back-button onclick=fn.load("page1.html")></ons-back-button></div>
       <div class="center">
         <i class="material-icons">help_outline</i></div>
         <audio src="Music/help.ogg" autoplay loop id="help_sound"></audio>
@@ -186,8 +190,8 @@ window.fn.open = function() {
 window.fn.load = function(page) {
   var content = document.getElementById('content');
   var menu = document.getElementById('menu');
-  content.load(page)
-    .then(menu.close.bind(menu));
+  content.load(page).then(menu.close.bind(menu));
+    setTimeout(g_now,100);
 };
 
 // sound
@@ -222,177 +226,36 @@ function cl(id){
 
 </script>
 
-<!--
-<div class="app-topbar p-mode">
-        <div class="left app-button">
-            <a href="setting.html">
-            <i class="material-icons">menu</i>
-            </a>
-        </div>
-    <div class="app-title">数道 PRACTICE MODE</div>
-    <a href="index_t.html">
-      <div class="right app-button">
-            <i class="material-icons">timer</i>
-        </div>
-    </a>
-</div>
-
-<div class="app-contents">
-  <div id="accordion">
-      <h3>四則演算</h3>
-        <div id="l1"></div>
-      <h3>速さ</h3>
-      <div id="l2"></div>
-    </div>
-  </div>
-</div>
--->
 
 <script>
-
-// make list
-    makeselecter("1","sisoku.csv",10,"四則演算×10",1,"l1");
-    makeselecter("2","sisoku.csv",30,"四則演算×30",2,"l1");
-    makeselecter("3","sisoku.csv",50,"四則演算×50",2,"l1");
-    makeselecter("4","sisoku.csv",100,"四則演算×100",3,"l1");
-    makeselecter("5","hayasa.csv",10,"速さ×10",2,"l2");
-    makeselecter("6","hayasa.csv",20,"速さ×20",2,"l2");
-
-    function makeselecter(No,fname,num,dname,lv,id){
-      addli(No,id);
-      adda(No,fname,num);
-      addtable(No);
-      addtr(No);
-      addth(No,lv,dname);
-    }
-
-    function addli(N,id){
-      var elem = document.createElement("li");
-      elem.classList.add("app-button");
-      elem.id = "li" + N;
-
-      var obj = document.getElementById(id);
-      obj.appendChild(elem);
-    }
-
-    function adda(N,name,num){
-      var elem = document.createElement("a");
-      elem.id = "a" + N;
-      elem.href = "practice.html?file=" + name +"&num=" + num + "&No=" + N;
-
-      var obj = document.getElementById("li" + N);
-      obj.appendChild(elem);
-    }
-
-    function addtable(N){
-      var elem = document.createElement("table");
-      elem.id = "table" + N;
-      elem.width = "100%";
-
-      var obj = document.getElementById("a" + N);
-      obj.appendChild(elem);
-    }
-
-    function addtr(N){
-      var elem = document.createElement("tr");
-      elem.id = "tr" + N;
-      elem.align = "left";
-
-      var obj = document.getElementById("table" + N);
-      obj.appendChild(elem);
-    }
-
-    function addth(N,lv,name){
-      var elem1 = document.createElement("th");
-      elem1.id = "tr" + "L" + N;
-      elem1.width = "30%";
-      elem1.classList.add("title");
-      lv = makelv(lv);
-      elem1.textContent = lv;
-
-      var obj = document.getElementById("tr" + N);
-      obj.appendChild(elem1);
-
-      var elem2 = document.createElement("th");
-      elem2.id = "tr" + "N" + N;
-      elem2.width = "50%";
-      elem2.classList.add("title");
-      elem2.textContent = name;
-
-      var obj = document.getElementById("tr" + N);
-      obj.appendChild(elem2);
-
-      var elem3 = document.createElement("th");
-      elem3.id = "tr" + "R" + N;
-      elem3.width = "20%";
-      elem3.classList.add("Rank");
-      var R = makerank(N);
-      elem3.textContent = R;
-
-      var obj = document.getElementById("tr" + N);
-      obj.appendChild(elem3);
-
-    }
-
-    function makelv(lv){
-      if(lv == 0){
-        return "- - - - -";
-      } else if (lv == 1) {
-        return "☆- - - -";
-      } else if (lv == 2) {
-        return "☆☆- - -";
-      } else if (lv == 3) {
-        return "☆☆☆- -";
-      } else if (lv == 4) {
-        return "☆☆☆☆-";
-      } else if (lv == 5) {
-        return "☆☆☆☆☆";
-      } else {
-        return "Unknown..."
-      }
-    }
-
-
-    function makerank(No){
-        var R = window.localStorage.getItem("R_" + No);
-
-      if(R == null){
-       return "---";
-     } else {
-       return R;
-     }
-    }
-    </script>
-    
-    <script>
     var il = window.localStorage.getItem("l0");
     if ( il == null){
             g_def();
     }
-    
+
     function g_def(){
         window.localStorage.setItem("l0",true);
         window.localStorage.setItem("l1",true);
         window.localStorage.setItem("l2",true);
     }
-        
+
     function g_now(){
         var id,v;
         for(i=1;i<5;i++){
             id = "l" +  i;
-            v = window.localStorage.getItem(id);            
+            v = window.localStorage.getItem(id);
             if(v){
                 op(id);
             }
         }
     }
-        
+
     window.onload = function(){
         setTimeout(g_now,500);
     };
 
 </script>
-    
+
 
 </body>
 </html>
