@@ -32,8 +32,8 @@
     <script>
     ons.disableAutoStyling();
     </script>
-    
-    
+
+
 </head>
 <body>
 
@@ -46,7 +46,7 @@
       </ons-toolbar-button>
     </div>
     <div class="center" width="60%" align="center">
-      <img src="img/test.gif" height="90%">
+      <img src="img/logo_rotate.gif" height="90%">
     </div>
     <div class="right" id="toolbar-right">
       <ons-toolbar-button id="volume_button" onclick="pause();">
@@ -133,7 +133,7 @@
         <ons-back-button onclick=content.load("page1.html")></ons-back-button></div>
       <div class="center">
         <i class="material-icons">help_outline</i></div>
-        <audio src="Music/help.ogg" autoplau loop id="help_sound"></audio>
+        <audio src="Music/help.ogg" autoplay loop id="help_sound"></audio>
     </ons-toolbar>
     <p>HELP</p>
   </ons-page>
@@ -348,11 +348,6 @@ function play(){
 
 
     </script>
-    <script>
-    navigator.vibrate(1000);
-    </script>
-
-
 
 </body>
 </html>

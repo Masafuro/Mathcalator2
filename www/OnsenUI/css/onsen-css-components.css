@@ -79,7 +79,9 @@ h6 {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 .page__background {
+  background:url("../../img/back_renga.png");
   background-color: #f9f9f9;
   position: absolute;
   top: 0px;
@@ -3643,7 +3645,6 @@ ons-range[disabled] .range {
   padding: 0 0 0 14px;
   margin: 1px 0 -1px 0;
   color: #1f1f21;
-  background-color: #fff;
 }
 .list__item:first-child {
   -webkit-box-shadow: inset 0px 1px 0px 0px #ccc;

@@ -15,14 +15,6 @@
         "is_top_level": false,
         "variables": {}
     },
-    "cordova-plugin-vibration": {
-        "source": {
-            "type": "local",
-            "path": "C:\\Users\\masafuro\\AppData\\Local\\Intel\\XDK\\xdk\\components\\server\\cordova\\cordova-plugins\\cordova-plugin-vibration"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-statusbar": {
         "source": {
             "type": "local",

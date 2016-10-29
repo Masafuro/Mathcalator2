@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-project-lite/sample.zip",
       "projectGuid": "e5ec0bb5-30d3-4c99-8999-a3fff5f8f37d",
-      "lastModifiedDate": 1477625521164,
+      "lastModifiedDate": 1477699162765,
       "creationDate": 1474201912522
     },
     "XDK-app-designer": "false",
@@ -25,29 +25,6 @@
     "serviceMethods": [],
     "cordovaPluginsDirectory": "plugins",
     "cordovaPlugins": [
-      {
-        "id": "cordova-plugin-vibration",
-        "name": "Vibration",
-        "version": "2.1.1",
-        "originType": "cordova.io",
-        "origin": "cordova-plugin-vibration",
-        "gitref": "",
-        "paramvals": {},
-        "sourceLocation": "plugins/cordova-plugin-vibration",
-        "selectedState": "Included",
-        "checksum": "cf9984de",
-        "dependsOn": [],
-        "topLevel": true,
-        "cordovaVersion": ">=3.0.0",
-        "permissions": {
-          "android:name": [
-            "android.permission.VIBRATE"
-          ]
-        },
-        "description": "Cordova Vibration Plugin",
-        "data": {},
-        "dependedBy": []
-      },
       {
         "id": "cordova-plugin-statusbar",
         "name": "StatusBar",
@@ -154,7 +131,7 @@
         "appVersion_": "0.2",
         "appDescription_": "Math ",
         "appAuthor_": "RattoOffice",
-        "appVersionCode_": "19",
+        "appVersionCode_": "20",
         "signed_": true
       },
       "iOS": {
