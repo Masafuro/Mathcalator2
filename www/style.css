@@ -1,8 +1,7 @@
 html{
   height: 100%;
-
-
 }
+
 body {
 background-color: #ffffff;
 height:100%;
@@ -12,6 +11,12 @@ a {
   color: currentColor;
 text-decoration: none;
 }
+
+.none{
+  display:none;
+}
+
+
 
 @font-face {
     font-family: "rank";
