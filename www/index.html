@@ -37,7 +37,7 @@
 </head>
 <body>
 
-<ons-template id="page1.html">
+<ons-template id="page1.html" onload="g_now();">
 <ons-page id="page1">
   <ons-toolbar>
     <div class="left" width="20%">
@@ -57,19 +57,19 @@
   </ons-toolbar>
 
   <ons-list>
-    <div id="list01">
+    <div id="l1" style="display:none">
       <ons-list-item modifier="chevron" tappable onclick=content.load("page2.html")>
         1+2=3</ons-list-item>
     </div>
-    <div id="list02">
-      <ons-list-item modifier="chevron" tappable onclick=op("list03")>
+    <div id="l2" style="display:none">
+      <ons-list-item modifier="chevron" tappable onclick=op("list3")>
         2[m/s] = 6[m] ÷ 3[s]</ons-list-item>
     </div>
-    <div id="list03" style="display:none" onclick=cl("list03")>
+    <div id="l3" onclick=cl("list3") style="display:none">
       <ons-list-item modifier="chevron" tappable>
         LIST03</ons-list-item>
     </div>
-    <div id="list04" style="display:block">
+    <div id="l4" style="display:none">
       <ons-list-item modifier="chevron" tappable>
         LIST04</ons-list-item>
     </div>
@@ -174,7 +174,6 @@
 
 
 <script>
-
 window.fn = {};
 
 window.fn.open = function() {
@@ -274,7 +273,6 @@ function cl(id){
 
       var obj = document.getElementById(id);
       obj.appendChild(elem);
-
     }
 
     function adda(N,name,num){
@@ -365,6 +363,36 @@ function cl(id){
      }
     }
     </script>
+    
+    <script>
+    var il = window.localStorage.getItem("l0");
+    if ( il == null){
+            g_def();
+    }
+    
+    function g_def(){
+        window.localStorage.setItem("l0",true);
+        window.localStorage.setItem("l1",true);
+        window.localStorage.setItem("l2",true);
+    }
+        
+    function g_now(){
+        var id,v;
+        for(i=1;i<5;i++){
+            id = "l" +  i;
+            v = window.localStorage.getItem(id);            
+            if(v){
+                op(id);
+            }
+        }
+    }
+        
+    window.onload = function(){
+        setTimeout(g_now,500);
+    };
+
+</script>
+    
 
 </body>
 </html>
